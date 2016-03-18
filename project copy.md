@@ -43,3 +43,19 @@ Instead of taking spice rack:
 	
 Instead of taking dictionary:
 	say "This object seems too heavy to carry around. It may have something interesting on its pages.".
+
+Instead of opening safe:
+	If the safe is locked:
+		say "There is a 6-character passcode needed to open this safe.";
+		now the command prompt is "Enter passcode: ";
+	otherwise:
+		continue the action.
+		
+After reading a command when the command prompt is "Enter passcode: ":
+	if the player's command matches "gatsby":
+		say "The safe creaks open.";
+		Now the safe is unlocked;
+		now the command prompt is ">";
+	otherwise:
+		say "The safe does not budge.";
+		now the command prompt is ">".
