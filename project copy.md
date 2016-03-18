@@ -21,12 +21,10 @@ There is a flashlight on the counter.
 Spice rack is nowhere.
 Dictionary is nowhere. Description of dictionary is "A regular old dictionary. There is one passage highlighted, and it reads:
 Ottendorf Cipher (n.) Commonly referred to as a book cipher, this code uses a source text to disclose a message. An Ottendorf Cipher consists of three numbers, corresponding to the page #-line #-letter #. Each group of three numbers corresponds to one letter in the message."
-Novel is nowhere. Description of novel is "To whoch page do you want to turn?".
+Novel is nowhere. Description of novel is "To which page do you want to turn?".
 Safe is nowhere. Safe is a container. Safe is locked. Description of safe is "A metal safe that must have the painting within it. There is a 26-setting dial that accepts some password, but I suppose I could break into the safe if I found something to cut the metal bars with.".
 Painting is inside safe.
-Paper is nowhere. Description of paper is "10-23-2
-12-23-2
-1-2-2".
+Paper is nowhere. Description of paper is "An old scrap of paper with the following numbers written on it:[line break][italic type][line break]187-2-1[line break]187-1-3[line break]187-5-1[line break]187-5-6[line break]187-5-18[line break]187-2-20".
 
 Light is a scene. Light begins when the player has the flashlight.
 When Light begins:
@@ -58,5 +56,20 @@ After reading a command when the command prompt is "Enter passcode: ":
 		now the command prompt is ">";
 	otherwise:
 		say "The safe does not budge.";
-		now the command prompt is ">".
+		now the command prompt is ">";
 		
+After examining novel:
+	now the command prompt is "Page number ";
+
+After reading a command when the command prompt is "Page number ":
+	now the command prompt is ">";
+	if the player's command matches "187":
+		say "The story [italic type]George Walker at Suez[roman type] begins on this page. The
+		text reads:[line break][line break]
+		Of all the spots on the world that I,[line break]
+		George Walker of Friday street, London, [line break]
+		have ever visited, Suez, in Egypt, at the [line break]
+		head of the Red Sea, is by far the vilest, [line break]
+		the most unpleasant, and the least [line break] interesting.";
+	otherwise:
+		say "There is nothing of interest on this page".
