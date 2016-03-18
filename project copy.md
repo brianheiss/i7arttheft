@@ -21,7 +21,7 @@ There is a flashlight on the counter.
 Spice rack is nowhere.
 Dictionary is nowhere. Description of dictionary is "A regular old dictionary. There is one passage highlighted, and it reads:
 Ottendorf Cipher (n.) Commonly referred to as a book cipher, this code uses a source text to disclose a message. An Ottendorf Cipher consists of three numbers, corresponding to the page #-line #-letter #. Each group of three numbers corresponds to one letter in the message."
-Novel is nowhere.
+Novel is nowhere. Description of novel is "To whoch page do you want to turn?".
 Safe is nowhere. Safe is a container. Safe is locked. Description of safe is "A metal safe that must have the painting within it. There is a 26-setting dial that accepts some password, but I suppose I could break into the safe if I found something to cut the metal bars with.".
 Painting is inside safe.
 Paper is nowhere. Description of paper is "10-23-2
@@ -42,4 +42,4 @@ Instead of taking spice rack:
 	now the paper is in the cabinet.
 	
 Instead of taking dictionary:
-	say "This object seems too heavy to carry around. It may have something interesting on its pages."
+	say "This object seems too heavy to carry around. It may have something interesting on its pages.".
