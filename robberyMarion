@@ -1,0 +1,69 @@
+"robberyMarion" by Marion Anderson
+
+[taken from "robbery test" by Brian Heissenbuttel]
+
+Darkness is a scene.
+noise_level is a real number that varies. noise_level is usually 0.  [noise level starts at 0]
+	
+Outdoors is a room. The description of the Outdoors is "You are outside the house. All the lights are out. On the second floor you can see a cracked window. You climb up to the window. asdfasdf [noise_level]." Window is a door. [Window is closed.] Window is east of Outdoors and west of Bedroom.
+
+[Special things to turn window(door) to be like a window]
+Instead of searching the window: [so that the player doesn't look through a wooden door]
+    say "Through the window, you make out [the other side of the window]."
+
+Instead of going east from outdoors: [to introduce the noise mechanic]
+	if the window is closed:
+		now noise_level is noise_level plus 100;
+		say "[noise_level]";
+		say "You go to open the window. As you open is it, the window frame lets out a shriek.";
+		now the window is open;
+		reject the player's command;
+	otherwise:
+		continue the action.
+		
+[end new stuff]
+
+Bedroom is a room. The description of bedroom is "A dark room with a bed and nightstand. Stairs in the corner lead downstairs.". Bed is in the bedroom. Bed is a supporter. Nightstand is in the bedroom. Nightstand is a supporter. Living room is a room. Kitchen is a room. Counter is in the kitchen. Counter is a supporter. Cabinet is in the kitchen. Cabinet is a container. Office is a room. Desk is in the office. Desk is a supporter. Basement is a room. Living room is below the bedroom. Kitchen is west of the living room. Office is west of the kitchen. 
+
+Basement is below the kitchen. There is a flashlight on the counter. Spice rack is nowhere. Dictionary is nowhere. Description of dictionary is "A regular old dictionary. There is one passage highlighted, and it reads: Ottendorf Cipher (n.) Commonly referred to as a book cipher, this code uses a source text to disclose a message. An Ottendorf Cipher consists of three numbers, corresponding to the page #-line #-letter #. Each group of three numbers corresponds to one letter in the message." Novel is nowhere. Description of novel is "To whoch page do you want to turn?". Safe is nowhere. Safe is a container. Safe is locked. Description of safe is "A metal safe that must have the painting within it. There is a 26-setting dial that accepts some password, but I suppose I could break into the safe if I found something to cut the metal bars with.". Painting is inside safe. Paper is nowhere. Description of paper is "10-23-2 12-23-2 1-2-2".
+
+
+Light is a scene. Light begins when the player has the flashlight. When Light begins: say "You flick on the flashlight and can now see your way around the house. You can finally inspect the objects within the house. I remember the old man keeping his painting in his office."; now the description of the bedroom is "The owner's bedroom. You see a ladder in the corner leading to the attic."; Now the spice rack is inside the cabinet; Now the dictionary is on the desk; Now the novel is on the nightstand; Now the safe is in the basement.
+
+Instead of taking spice rack: say "Moving the spices triggers a small compartment in the cabinet to open. There is a small piece of paper on the inside of the cabinet."; now the paper is in the cabinet.
+
+Instead of taking dictionary: say "This object seems too heavy to carry around. It may have something interesting on its pages.".
+
+Instead of opening safe: 
+	If the safe is locked: 
+		say "There is a 6-character passcode needed to open this safe. All the letters are capital"; 
+		now the command prompt is "Enter passcode: ";
+	otherwise: 
+		continue the action.
+
+After reading a command when the command prompt is "Enter passcode: ": 
+	if the player's command matches "GATSBY": 
+		say "The safe creaks open.";
+		Now the safe is unlocked; 
+		now the command prompt is ">"; 
+	otherwise: 
+		say "The safe does not budge.";
+		now the command prompt is ">".
+
+
+
+[STUFF TO ADD: 
+	noise:
+		fix outside-inside stuff
+		IN DARK:
+			noise every few movements
+			tripping over things
+		OTHERWISE:
+			appliances that the player can touch, but only make noise
+			a pet that barks if player walks into wrong room
+	maybe multiple art things with different locations in house
+]
+
+
+
+
