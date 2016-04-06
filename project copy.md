@@ -1,7 +1,7 @@
 "robbery test" by Brian Heissenbuttel
 
 Darkness is a scene.
-noise_level is a real number that varies. noise_level is usually 0.  [noise level starts at 0]
+noise_level is a real number that varies. noise_level is usually 10.  [noise level starts at 0]
 Outdoors is a room. The description of the Outdoors is "You are outside the house. All the lights are out. On the second floor you can see a cracked window. You climb up to the window. asdfasdf [noise_level]." Window is a door. [Window is closed.] Window is east of Outdoors and west of Bedroom.
 
 Instead of searching the window: [so that the player doesn't look through a wooden door]
@@ -10,12 +10,24 @@ Instead of searching the window: [so that the player doesn't look through a wood
 Instead of going east from outdoors: [to introduce the noise mechanic]
 	if the window is closed:
 		now noise_level is noise_level plus 100;
-		say "[noise_level]";
+		say "[noise_level] ";
+		say "You go to open the window. As you open is it, the window frame lets out a shriek.";
+		now the window is open;
+		move the player to The Bedroom;
+		reject the player's command;
+	otherwise:
+		continue the action.
+		
+instead of opening the window:
+	if the window is closed:
+		now noise_level is noise_level plus 100;
+		say "[noise_level] ";
 		say "You go to open the window. As you open is it, the window frame lets out a shriek.";
 		now the window is open;
 		reject the player's command;
 	otherwise:
 		continue the action.
+		
 Bedroom is a room.
 The description of bedroom is "A dark room with a bed and nightstand. Stairs in the corner lead downstairs.".
 Bed is in the bedroom. Bed is a supporter.
@@ -110,6 +122,8 @@ After reading a command when the player is in the basement:
 		if the player has the crowbar:
 			say "You wedge the crowbar against the metal bars that are keeping the safe locked. Pulling hard, the bars slowly surrender while letting lose a loud creaking noise. After enough time, the bars break free, making the safe nothing more than an expensive door.";
 			Now the safe is unlocked;
+			Now noise_level is noise_level plus 525600;
+			say "You dun goof'd. Now the noise level is [noise_level]";
 			reject the player's command;
 		otherwise:
 			say "You can't do this with what you have right now.";
@@ -117,8 +131,15 @@ After reading a command when the player is in the basement:
 
 Instead of taking wine bottle:
 	say "The wine bottle slips out of your hands, shattering on the floor. The sound resonates through the empty kitchen.";
-	now the wine bottle is nowhere.
+	now the wine bottle is nowhere;
+	now noise_level is noise_level plus 100;
+	say "Now the noise level is [noise_level]. ".
 
 Win is a scene. Win begins when the player has the painting.
 When Win begins:
 	say "You got the valuable painting and escaped without being noticed. Congratulations, you now own a valuable piece of art that will sell for millions of dollars.[line break][line break]Game Over: You have won!".
+	
+Caught is a scene. Caught begins when noise_level is greater than 100000.
+When caught begins:
+	say "You're done, pal.";
+	End the story.
